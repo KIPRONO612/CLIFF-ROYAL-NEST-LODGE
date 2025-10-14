@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# CLIFF-ROYAL-NEST-LODGE
-A hotel and bed and breakfast booking site
-=======
 # Cliff Royal Nest Lodge — Local development
 
 This is a small static landing page. To run it locally on Windows PowerShell you have two simple options.
@@ -86,4 +82,3 @@ CI Deploy (GitHub Actions)
 
 A GitHub Actions workflow `/.github/workflows/deploy.yml` is included that runs `npm run deploy` when you push to `main`. Make sure the repo exists under your GitHub account and the `homepage` in `package.json` is set correctly.
 
->>>>>>> dde398f (Prepare site for GitHub Pages deployment)

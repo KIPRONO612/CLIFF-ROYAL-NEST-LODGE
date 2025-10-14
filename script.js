@@ -101,3 +101,57 @@ window.addEventListener("DOMContentLoaded", () => {
 (function () {
   window.analytics = window.analytics || { enabled: false };
 })();
+
+// Slideshow (fade-cross)
+(function () {
+  const slideshow = document.getElementById('slideshow');
+  if (!slideshow) return;
+  const slides = Array.from(slideshow.querySelectorAll('.slide'));
+  const prevBtn = slideshow.querySelector('.slideshow-prev');
+  const nextBtn = slideshow.querySelector('.slideshow-next');
+  const dotsWrap = slideshow.querySelector('.slideshow-dots');
+  let current = 0;
+  let interval = null;
+  const INTERVAL_MS = 4000;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current] && dotsWrap.children[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current] && dotsWrap.children[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  // create dots
+  slides.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    btn.addEventListener('click', () => { goTo(i); reset(); });
+    dotsWrap.appendChild(btn);
+  });
+
+  prevBtn && prevBtn.addEventListener('click', () => { prev(); reset(); });
+  nextBtn && nextBtn.addEventListener('click', () => { next(); reset(); });
+
+  function start() { interval = setInterval(next, INTERVAL_MS); }
+  function stop() { clearInterval(interval); interval = null; }
+  function reset() { stop(); start(); }
+
+  slideshow.addEventListener('mouseenter', stop);
+  slideshow.addEventListener('mouseleave', start);
+
+  // keyboard controls
+  slideshow.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { next(); reset(); }
+    if (e.key === 'ArrowLeft') { prev(); reset(); }
+  });
+
+  // init
+  slides.forEach(s => s.classList.remove('active'));
+  slides[0] && slides[0].classList.add('active');
+  dotsWrap.children[0] && dotsWrap.children[0].classList.add('active');
+  start();
+})();

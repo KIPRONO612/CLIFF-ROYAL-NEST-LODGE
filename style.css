@@ -114,6 +114,22 @@ h1 {
   .amenities ul { flex-direction: column; align-items: center; }
 }
 
+/* Slideshow */
+.slideshow { position: relative; max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 8px; }
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 800ms ease; display: flex; align-items: center; justify-content: center; }
+.slide img { width: 100%; height: 420px; object-fit: cover; display: block; }
+.slide.active { opacity: 1; position: relative; }
+.slideshow-prev, .slideshow-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: #fff; border: none; padding: 10px 12px; cursor: pointer; border-radius: 6px; }
+.slideshow-prev { left: 12px; }
+.slideshow-next { right: 12px; }
+.slideshow-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+.slideshow-dots button { width: 10px; height: 10px; border-radius: 50%; border: none; background: rgba(255,255,255,0.5); cursor: pointer; }
+.slideshow-dots button.active { background: rgba(255,255,255,0.95); }
+
+@media (max-width: 700px) {
+  .slide img { height: 220px; }
+}
+
 /* Contact */
 .contact { padding: 30px 20px; color: #fff; text-align: center; }
 
