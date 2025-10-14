@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Cliff Royal Nest Lodge — a scenic lodge in Sotik, Kenya. Book your stay with us for stunning views and comfortable accommodation." />
+  <title>CLIFF ROYAL NEST LODGE SOTIK</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hero">
+    <!-- Decorative background image is in CSS; provide an accessible image fallback for screen readers -->
+    <img src="assets/hotel.jpg" alt="Cliff Royal Nest Lodge exterior" class="sr-only" />
+
+    <div class="glass-card" tabindex="0" role="region" aria-label="Main information">
+      <h1>CLIFF ROYAL NEST LODGE</h1>
+      <p class="location">Located in scenic Sotik, Kenya</p>
+      <button id="bookBtn" class="cta" aria-label="Book a stay at Cliff Royal Nest Lodge">Book Now</button>
+    </div>
+  </div>
+
+  <!-- Amenities -->
+  <section class="amenities" id="amenities">
+    <h2>Our Amenities</h2>
+    <ul>
+      <li>Scenic cliff views</li>
+      <li>Complimentary breakfast</li>
+      <li>Free Wi-Fi</li>
+      <li>Guided nature walks</li>
+    </ul>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
+    <h2>Gallery</h2>
+    <div class="grid">
+      <img src="assets/hotel.jpg" alt="Exterior view" />
+      <img src="assets/hotel.jpg" alt="Lodge interior" />
+      <img src="assets/hotel.jpg" alt="Scenic view" />
+    </div>
+  </section>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="bookingTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close booking form">×</button>
+      <h3 id="bookingTitle">Book your stay</h3>
+      <form id="bookingForm">
+        <label>Full name<input type="text" name="name" required /></label>
+        <label>Email<input type="email" name="email" required /></label>
+        <label>Check-in<input type="date" name="checkin" required /></label>
+        <label>Check-out<input type="date" name="checkout" required /></label>
+        <button type="submit" class="cta">Request Booking</button>
+      </form>
+      <p id="bookingSuccess" class="sr-only">Thank you — your booking request was received.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:info@cliffnestlodge.example">info@cliffnestlodge.example</a></p>
+    <p>Phone: +254 700 000 000</p>
+  </section>
+
+  <!-- Cookie consent -->
+  <div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite">
+    <p>We use cookies to improve your experience. By using this site you agree to our use of cookies.</p>
+    <div class="cookie-actions">
+      <button id="acceptCookies" class="cta">Accept</button>
+      <button id="dismissCookies" class="cta">Dismiss</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

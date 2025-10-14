@@ -1,0 +1,15 @@
+{
+  "name": "cliff-royal-nest-lodge",
+  "version": "1.0.0",
+  "description": "Static landing page for Cliff Royal Nest Lodge — lightweight local server scripts",
+  "private": true,
+  "homepage": "https://KIPRONO612.github.io/CLIFF-ROYAL-NEST-LODGE",
+  "scripts": {
+    "start": "npx http-server -c-1 -p 8080",
+    "predeploy": "echo 'Preparing to deploy static files...'",
+    "deploy": "npx gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}
