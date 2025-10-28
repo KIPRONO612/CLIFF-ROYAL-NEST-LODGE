@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: cliff-royal-nest-lodge
+    env: node
+    repo: KIPRONO612/CLIFF-ROYAL-NEST-LODGE
+    branch: main
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    instanceType: starter
+    env:
+      - key: NODE_ENV
+        value: production
+    # Note: Render will still require you to set sensitive values in the dashboard
+    # The following keys are listed here as placeholders and should be set via the Render UI
+    envVars:
+      - key: TWILIO_ACCOUNT_SID
+        value: ""
+      - key: TWILIO_AUTH_TOKEN
+        value: ""
+      - key: TWILIO_FROM
+        value: ""
+    envVars:
+      - key: TWILIO_ACCOUNT_SID
+        value: ""
+      - key: TWILIO_AUTH_TOKEN
+        value: ""
+      - key: TWILIO_FROM
+        value: ""

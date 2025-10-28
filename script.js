@@ -183,18 +183,51 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Background slideshow (behind content)
 (function () {
-  const bg = document.querySelectorAll('.bg-slideshow .bg-slide');
+  const bg = Array.from(document.querySelectorAll('.bg-slideshow .bg-slide'));
   if (!bg || bg.length === 0) return;
   let idx = 0;
   const BG_INTERVAL = 6000;
+
+  // Preload background images to avoid flashes; then start cycling
+  let loaded = 0;
+  const total = bg.length;
   function show(i) {
-    bg.forEach((el, j) => {
-      el.classList.toggle('active', j === i);
-    });
+    bg.forEach((el, j) => el.classList.toggle('active', j === i));
   }
-  show(0);
-  setInterval(() => {
-    idx = (idx + 1) % bg.length;
-    show(idx);
-  }, BG_INTERVAL);
+
+  bg.forEach((el) => {
+    const url = (el.style && el.style.backgroundImage || '').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+    if (!url) { loaded++; return; }
+    const img = new Image();
+    img.onload = () => { loaded++; if (loaded === total) startBg(); };
+    img.onerror = () => { loaded++; if (loaded === total) startBg(); };
+    img.src = url;
+  });
+
+  function startBg() {
+    show(0);
+    setInterval(() => { idx = (idx + 1) % bg.length; show(idx); }, BG_INTERVAL);
+  }
+})();
+
+// Welcome quote modal: show on page load, then proceed to booking modal
+(function () {
+  const welcome = document.getElementById('welcomeModal');
+  if (!welcome) return;
+
+  function openWelcome() {
+    welcome.setAttribute('aria-hidden', 'false');
+    // focus the modal for accessibility
+    try { welcome.focus(); } catch (e) { /* ignore */ }
+  }
+
+  function closeWelcome() {
+    welcome.setAttribute('aria-hidden', 'true');
+  }
+
+  // show welcome on load; auto-close after short delay
+  window.addEventListener('DOMContentLoaded', () => {
+    openWelcome();
+    setTimeout(() => { closeWelcome(); }, 2000);
+  });
 })();
