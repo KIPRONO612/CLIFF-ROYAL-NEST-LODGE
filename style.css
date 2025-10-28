@@ -10,10 +10,16 @@
 body, html {
   min-height: 100%;
   font-family: 'Montserrat', sans-serif;
-  background: url('assets/hotel.jpg') no-repeat center center/cover;
-  /* allow scrolling on small devices */
+  /* background removed — using background slideshow instead */
   overflow-y: auto;
 }
+
+/* Background slideshow (full-viewport behind content) */
+.bg-slideshow { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+.bg-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1200ms ease; }
+.bg-slide.active { opacity: 1; }
+
+.hero { position: relative; z-index: 1; height: 100vh; display: flex; justify-content: center; align-items: center; }
 
 /* Glassmorphism Card */
 .hero {

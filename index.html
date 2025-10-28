@@ -6,8 +6,17 @@
   <meta name="description" content="Cliff Royal Nest Lodge — a scenic lodge in Sotik, Kenya. Book your stay with us for stunning views and comfortable accommodation." />
   <title>CLIFF ROYAL NEST LODGE SOTIK</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Flatpickr (stylish datepicker) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
+  <!-- Background slideshow (covers viewport behind content) -->
+  <div class="bg-slideshow" aria-hidden="true">
+    <div class="bg-slide" style="background-image:url('assets/hotel.jpg')"></div>
+    <div class="bg-slide" style="background-image:url('assets/hotelside.webp')"></div>
+    <div class="bg-slide" style="background-image:url('assets/nightview.webp')"></div>
+    <div class="bg-slide" style="background-image:url('assets/hoteltop.webp')"></div>
+  </div>
   <div class="hero">
     <!-- Decorative background image is in CSS; provide an accessible image fallback for screen readers -->
     <img src="assets/hotel.jpg" alt="Cliff Royal Nest Lodge exterior" class="sr-only" />
@@ -60,11 +69,12 @@
       <form id="bookingForm">
         <label>Full name<input type="text" name="name" required /></label>
         <label>Email<input type="email" name="email" required /></label>
-        <label>Check-in<input type="date" name="checkin" required /></label>
-        <label>Check-out<input type="date" name="checkout" required /></label>
+        <label>Phone Number<input type="Phone Number" name="Phone Nuumber" required /></label>
+  <label>Check-in<input class="date" type="text" name="checkin" placeholder="Select check-in" required /></label>
+  <label>Check-out<input class="date" type="text" name="checkout" placeholder="Select check-out" required /></label>
         <button type="submit" class="cta">Request Booking</button>
       </form>
-      <p id="bookingSuccess" class="sr-only">Thank you — your booking request was received.</p>
+      <p id="bookingSuccess" class="sr-only">Thank you — your booking request was received.You will receive a call shortly.</p>
     </div>
   </div>
 
@@ -84,6 +94,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -13,6 +13,31 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 100);
 });
 
+// init flatpickr for more stylish date inputs (if flatpickr loaded)
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.flatpickr) {
+    const checkin = document.querySelector('input[name="checkin"].date');
+    const checkout = document.querySelector('input[name="checkout"].date');
+    const opts = {
+      altInput: true,
+      altFormat: 'F j, Y',
+      dateFormat: 'Y-m-d',
+      minDate: 'today'
+    };
+    const ci = checkin ? flatpickr(checkin, {
+      ...opts,
+      onChange: function(selectedDates) {
+        if (selectedDates.length) {
+          const min = new Date(selectedDates[0].getTime());
+          min.setDate(min.getDate() + 1);
+          if (checkout && checkout._flatpickr) checkout._flatpickr.set('minDate', min);
+        }
+      }
+    }) : null;
+    const co = checkout ? flatpickr(checkout, opts) : null;
+  }
+});
+
 // Booking modal logic
 (() => {
   const bookBtn = document.getElementById('bookBtn');
@@ -154,4 +179,22 @@ window.addEventListener("DOMContentLoaded", () => {
   slides[0] && slides[0].classList.add('active');
   dotsWrap.children[0] && dotsWrap.children[0].classList.add('active');
   start();
+})();
+
+// Background slideshow (behind content)
+(function () {
+  const bg = document.querySelectorAll('.bg-slideshow .bg-slide');
+  if (!bg || bg.length === 0) return;
+  let idx = 0;
+  const BG_INTERVAL = 6000;
+  function show(i) {
+    bg.forEach((el, j) => {
+      el.classList.toggle('active', j === i);
+    });
+  }
+  show(0);
+  setInterval(() => {
+    idx = (idx + 1) % bg.length;
+    show(idx);
+  }, BG_INTERVAL);
 })();
